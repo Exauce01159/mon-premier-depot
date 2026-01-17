@@ -2,7 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription au Site</title>
+
+  <!-- Style -->
   <link rel="stylesheet" href="git.css">
 </head>
 <body>
@@ -14,14 +17,41 @@
 <section class="form-box">
   <h2>Créer un compte</h2>
 
-  <input type="text" id="nom" placeholder="Nom complet">
-  <input type="email" id="email" placeholder="Adresse email">
-  <input type="password" id="password" placeholder="Mot de passe">
+  <!-- Nom -->
+  <input 
+    type="text" 
+    id="nom" 
+    placeholder="Nom complet"
+    autocomplete="name"
+    required
+  >
 
+  <!-- Email -->
+  <input 
+    type="email" 
+    id="email" 
+    placeholder="Adresse email"
+    autocomplete="email"
+    required
+  >
+
+  <!-- Mot de passe -->
+  <input 
+    type="password" 
+    id="password" 
+    placeholder="Mot de passe"
+    minlength="6"
+    required
+  >
+
+  <!-- Bouton -->
   <button onclick="inscription()">Valider l’inscription</button>
-  <p id="message"></p>
+
+  <!-- Message JS -->
+  <p id="message" aria-live="polite"></p>
 </section>
 
+<!-- Script -->
 <script src="git.js"></script>
 </body>
 </html>

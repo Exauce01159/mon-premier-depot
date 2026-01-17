@@ -1,80 +1,183 @@
-body {
+/* RESET DE BASE */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
+  padding: 0;
+}
+
+/* STYLE GLOBAL */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e5edfd, #f8fafc);
   text-align: center;
+  color: #1e293b;
+  line-height: 1.6;
 }
 
+/* HEADER */
 header {
-  background: #1e293b;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
   color: white;
-  padding: 20px;
+  padding: 25px 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
+header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* HERO SECTION */
 .hero {
-  padding: 40px;
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.hero h2 {
+  font-size: 1.9rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  font-size: 1.05rem;
+  color: #334155;
 }
 
 .hero img {
   max-width: 90%;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease;
 }
 
+.hero img:hover {
+  transform: scale(1.02);
+}
+
+/* BOUTONS */
 .btn {
   display: inline-block;
-  padding: 15px 25px;
-  background: #2563eb;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
 }
 
+.btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-3px);
+}
+
+/* FORMULAIRE */
 .form-box {
   background: white;
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
 }
 
 .form-box input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  padding: 13px 14px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  font-size: 15px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
+.form-box input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* BOUTON FORMULAIRE */
 .form-box button {
   width: 100%;
-  padding: 12px;
-  background: #2563eb;
+  padding: 14px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
 }
 
+.form-box button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-2px);
+}
+
+/* PAGE CONFIRMATION */
 .confirmation {
   background: white;
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 30px;
-  border-radius: 15px;
+  max-width: 650px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
+.confirmation h2 {
+  margin-bottom: 15px;
+}
+
+.confirmation p {
+  font-size: 1.05rem;
+}
+
+/* STATUS */
 .status {
-  background: #fde68a;
-  padding: 15px;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #fde68a, #facc15);
+  padding: 18px;
+  border-radius: 12px;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 25px 0;
+  color: #78350f;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
+/* FOOTER */
 footer {
-  margin-top: 40px;
-  padding: 15px;
-  background: #1e293b;
+  margin-top: 60px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
   color: white;
+  font-size: 0.95rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-box,
+  .confirmation {
+    margin: 30px 15px;
+    padding: 25px;
+  }
 }
