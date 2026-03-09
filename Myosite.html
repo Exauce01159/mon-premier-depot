@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exaucé Kisiabongo | L1 Sciences Info</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --dark-blue: #0f172a;
+            --accent: #fdbb2d;
+            --admin: #8e44ad;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --bg: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; background: var(--bg); 
+            color: #1e293b; overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- SPLASH SCREEN AMÉLIORÉE --- */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--dark-blue); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loader-content { text-align: center; width: 80%; max-width: 300px; }
+
+        .animate-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.8rem; color: var(--accent); font-weight: 700;
+            margin-bottom: 20px; letter-spacing: -1px;
+            animation: pulseText 2s infinite ease-in-out;
+        }
+
+        .progress-bar {
+            width: 100%; height: 4px; background: rgba(255,255,255,0.1);
+            border-radius: 10px; overflow: hidden; position: relative;
+        }
+        .progress-fill {
+            width: 0%; height: 100%; background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            animation: fillProgress 2.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes pulseText { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.98); } }
+        @keyframes fillProgress { to { width: 100%; } }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: white; padding: 15px 0 0 0; text-align: center;
+            position: fixed; width: 100%; top: 0; z-index: 2000;
+            display: none; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header h1 { font-size: 1rem; margin: 0 0 10px 0; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+
+        nav {
+            display: flex; overflow-x: auto; white-space: nowrap; 
+            padding: 12px 10px; gap: 15px; scrollbar-width: none;
+        }
+        nav::-webkit-scrollbar { display: none; }
+
+        nav a {
+            color: #94a3b8; text-decoration: none; font-weight: 600; 
+            font-size: 11px; text-transform: uppercase; padding: 8px 12px;
+            border-radius: 8px; transition: 0.3s;
+        }
+        nav a.active-link { color: var(--accent); background: rgba(253, 187, 45, 0.1); }
+
+        /* --- SECTIONS & CARDS --- */
+        section { display: none; padding: 160px 20px 60px; min-height: 100vh; }
+        .active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { 
+            background: var(--white); max-width: 500px; margin: auto; 
+            padding: 25px; border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+        }
+
+        /* --- ANNONCES --- */
+        .news-item { 
+            text-align: left; padding: 15px; margin-bottom: 12px; 
+            border-radius: 12px; background: #fff; 
+            border: 1px solid #f1f5f9; border-left: 4px solid var(--primary);
+        }
+        .tag { font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
+        .tag-urgent { background: #fee2e2; color: #ef4444; }
+        .tag-tech { background: #e0f2fe; color: #0ea5e9; }
+        .tag-default { background: #f1f5f9; color: #64748b; }
+
+        /* --- BUTTONS --- */
+        .btn { 
+            background: var(--primary); color: white; padding: 14px; 
+            border: none; border-radius: 12px; cursor: pointer; 
+            font-weight: 700; width: 100%; font-size: 14px;
+            box-shadow: 0 4px 6px rgba(26, 42, 108, 0.2);
+        }
+        .btn:active { transform: scale(0.98); }
+
+        input, textarea { 
+            width: 100%; padding: 12px; margin: 8px 0; 
+            border: 1.5px solid #e2e8f0; border-radius: 10px;
+            font-family: inherit; font-size: 14px;
+        }
+        input:focus { outline: none; border-color: var(--accent); }
+
+        footer { background: var(--dark-blue); color: #64748b; padding: 30px; text-align: center; font-size: 11px; }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="loader-content">
+            <div class="animate-text">EXAUCÉ.init()</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p style="color: rgba(255,255,255,0.4); font-size: 10px; margin-top: 15px; font-family: monospace;">LOADING INFO DATABASE...</p>
+        </div>
+    </div>
+
+    <header id="main-header">
+        <h1>Exaucé Kisiabongo</h1>
+        <nav id="nav-bar">
+            <a id="l-welcome" onclick="showPage('welcome')">Accueil</a>
+            <a id="l-auth" onclick="showPage('auth')">Accès</a>
+            <a id="l-news" onclick="secureAccess('news')">Annonces</a>
+            <a id="l-program" onclick="secureAccess('program')">Agenda</a>
+            <a id="l-contact" onclick="showPage('contact')">Contact</a>
+            <a id="l-admin" onclick="showPage('adminPanel')" style="display:none; color:var(--accent)">🛠 ADMIN</a>
+        </nav>
+    </header>
+
+    <section id="welcome" class="active">
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 10px;">💻</div>
+            <h2 style="margin:0; color: var(--primary)">Faculté des Sciences</h2>
+            <p style="color:#64748b; font-size: 14px;">Département Informatique | L1</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p style="font-size: 13px;">Système centralisé pour le suivi des cours de programmation et algorithmique.</p>
+            <button class="btn" onclick="showPage('auth')">Consulter mon profil</button>
+        </div>
+    </section>
+
+    <section id="auth">
+        <div class="card">
+            <h2 style="text-align: center;">Vérification</h2>
+            <input type="password" id="password" placeholder="Entrez le code d'accès">
+            <button class="btn" onclick="login()">Se connecter</button>
+        </div>
+    </section>
+
+    <section id="news">
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">📢 Dernières Annonces</h2>
+            <div id="newsContainer">
+                </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <div class="card">
+            <h2>📅 Horaire L1 Info</h2>
+            <div id="progDisplay" style="text-align: left; white-space: pre-wrap; font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 10px; font-size: 12px;"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="card">
+            <h2>✉️ Bureau de Liaison</h2>
+            <input type="text" id="contactName" placeholder="Votre nom complet">
+            <textarea id="contactMessage" rows="4" placeholder="Décrivez votre demande académique..."></textarea>
+            <button class="btn" style="background:#25d366" onclick="sendToWhatsApp()">Message WhatsApp</button>
+        </div>
+    </section>
+
+    <section id="adminPanel">
+        <div class="card">
+            <h2 style="color:var(--admin)">Console de Publication</h2>
+            <p style="font-size: 11px;">Exemple: URGENT|Titre|Contenu</p>
+            <textarea id="editNews" rows="6"></textarea>
+            <textarea id="editProg" rows="4"></textarea>
+            <button class="btn" style="background:var(--admin)" onclick="saveAdminChanges()">Mettre à jour le portail</button>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Exaucé Kisiabongo</strong></p>
+        <p>Sciences Informatiques | Année Académique 2026</p>
+    </footer>
+
+    <script>
+        const ADMIN_PASS = "EXAUCE2026";
+        const PHONE = "243842317817";
+
+        // LES ANNONCES RÉELLES ET RICHES
+        const newsContent = [
+            "URGENT|Examen Algorithmique|La session pratique sur les arbres binaires et les tris est fixée au 15 Mars en Salle B.",
+            "TECH|Installation Python|Tous les étudiants de L1 doivent installer Python 3.11 et VS Code avant le labo de lundi.",
+            "INFO|Bourse d'études|Une séance d'information sur les bourses de spécialisation en Data Science aura lieu à la bibliothèque.",
+            "URGENT|Rapport TP|Le délai pour le dépôt du code source de l'application 'Gestion de Stock' est ce soir à minuit.",
+            "TECH|Nouveau Module|Le cours d'Architecture des Ordinateurs commencera par l'étude des circuits logiques et de l'algèbre de Boole."
+        ].join('\n');
+
+        const progContent = "LUN: 08:00 - Algorithmique (Pr. Mbuyi)\nMAR: 10:00 - Mathématiques Discrètes\nMER: 08:30 - Architecture des Ordinateurs\nJEU: 13:00 - Programmation Langage C\nVEN: 09:00 - Logique & Anglais Tech";
+
+        window.onload = () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                setTimeout(() => { 
+                    splash.style.visibility = 'hidden';
+                    document.getElementById('main-header').style.display = 'block';
+                }, 800);
+            }, 2500);
+
+            // FORCE LA MISE À JOUR (Nettoyage si c'est vide)
+            if (!localStorage.getItem('siteNews') || localStorage.getItem('siteNews') === "") {
+                localStorage.setItem('siteNews', newsContent);
+            }
+            if (!localStorage.getItem('siteProg') || localStorage.getItem('siteProg') === "") {
+                localStorage.setItem('siteProg', progContent);
+            }
+            
+            loadData();
+        };
+
+        function showPage(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
+            const link = document.getElementById('l-'+id);
+            if(link) link.classList.add('active-link');
+            window.scrollTo(0,0);
+        }
+
+        function secureAccess(id) {
+            if (localStorage.getItem('access') === 'true' || localStorage.getItem('role') === 'admin') showPage(id);
+            else { alert("Veuillez vous authentifier pour accéder à cette zone."); showPage('auth'); }
+        }
+
+        function login() {
+            const p = document.getElementById('password').value;
+            if (p === ADMIN_PASS) {
+                localStorage.setItem('role', 'admin');
+                showPage('adminPanel');
+            } else if (p.length > 3) {
+                localStorage.setItem('access', 'true');
+                showPage('news');
+            } else { alert("Code trop court."); }
+            loadData();
+        }
+
+        function loadData() {
+            const container = document.getElementById('newsContainer');
+            const raw = localStorage.getItem('siteNews');
+            container.innerHTML = "";
+
+            if(raw) {
+                raw.split('\n').forEach(line => {
+                    const parts = line.split('|');
+                    if(parts.length < 3) return;
+                    const tagType = parts[0].toLowerCase() === 'urgent' ? 'tag-urgent' : (parts[0].toLowerCase() === 'tech' ? 'tag-tech' : 'tag-default');
+                    container.innerHTML += `
+                        <div class="news-item">
+                            <span class="tag ${tagType}">${parts[0]}</span>
+                            <div style="font-weight:700; font-size:14px; color:#1e293b;">${parts[1]}</div>
+                            <div style="font-size:12px; color:#64748b; margin-top:4px;">${parts[2]}</div>
+                        </div>`;
+                });
+            }
+
+            document.getElementById('progDisplay').innerText = localStorage.getItem('siteProg');
+            document.getElementById('l-admin').style.display = (localStorage.getItem('role') === 'admin') ? 'inline-block' : 'none';
+            
+            if(localStorage.getItem('role') === 'admin') {
+                document.getElementById('editNews').value = localStorage.getItem('siteNews');
+                document.getElementById('editProg').value = localStorage.getItem('siteProg');
+            }
+        }
+
+        function saveAdminChanges() {
+            localStorage.setItem('siteNews', document.getElementById('editNews').value);
+            localStorage.setItem('siteProg', document.getElementById('editProg').value);
+            alert("Base de données mise à jour !");
+            loadData();
+            showPage('news');
+        }
+
+        function sendToWhatsApp() {
+            const n = document.getElementById('contactName').value;
+            const m = document.getElementById('contactMessage').value;
+            if(!n || !m) return alert("Complétez le formulaire.");
+            window.open(`https://wa.me/${PHONE}?text=Bonjour Exaucé (L1 Info), je suis ${n}. Message: ${m}`);
+        }
+    </script>
+</body>
+</html>
