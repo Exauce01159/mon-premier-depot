@@ -1,1 +1,208 @@
-hello
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Lund's | Dr. Joseph Luyindadio</title>
+    
+    <style>
+        /* CONFIGURATION DU DÉFILEMENT */
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            background-color: #0b132b;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        /* FENÊTRE 1 : ACCUEIL */
+        .window-home {
+            background: linear-gradient(rgba(0, 32, 74, 0.7), rgba(0, 32, 74, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .window-home h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        /* FENÊTRE 2 : LE DOCTEUR (Avec ta photo joe.jpg) */
+        .window-doctor {
+            background: #ffffff;
+            color: #1c2541;
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+            padding: 0 10%;
+        }
+
+        .doctor-photo {
+            width: 380px;
+            height: 500px;
+            background: #ccc url('joe.jpg') no-repeat center;
+            background-size: cover;
+            border-radius: 20px;
+            box-shadow: 25px 25px 0px #00cba9;
+            transition: transform 0.5s ease; /* Transition pour le zoom */
+        }
+
+        .doctor-photo:hover {
+            transform: scale(1.05); /* Effet de zoom au survol */
+        }
+
+        .doctor-info {
+            text-align: left;
+            max-width: 550px;
+        }
+
+        .doctor-info h2 {
+            font-size: 3rem;
+            color: #004a99;
+            margin: 0;
+        }
+
+        /* FENÊTRE 3 : SERVICES */
+        .window-tech {
+            background: #f0f4f8;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 5px solid #00cba9;
+        }
+
+        /* FENÊTRE 4 : CONTACT WHATSAPP */
+        .window-contact {
+            background: #004a99;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 22px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, background-color 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.08);
+            background-color: #1ebe57;
+        }
+
+        /* Icône de défilement */
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            color: rgba(255,255,255,0.6);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Adaptabilité Mobile */
+        @media (max-width: 900px) {
+            .window-doctor { flex-direction: column; height: auto; padding: 50px 20px; }
+            .doctor-photo { width: 280px; height: 350px; margin: 0 auto; }
+            .doctor-info { text-align: center; }
+            .window-home h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="window-home">
+        <h1>JOE LUND'S</h1>
+        <p>Imagerie Médicale par le Dr. Joseph Luyindadio</p>
+        <div class="scroll-hint">↓</div>
+    </section>
+
+    <section class="window-doctor">
+        <div class="doctor-photo"></div>
+        <div class="doctor-info">
+            <span style="color: #00cba9; font-weight: bold; text-transform: uppercase;">Expertise & Rigueur</span>
+            <h2>Dr. Joseph Luyindadio</h2>
+            <p>Fondateur de <strong>Joe Lund's</strong>, le Dr. Luyindadio met son expertise en imagerie médicale au service de votre santé à Kinshasa.</p>
+            <p>Spécialisé dans le diagnostic de haute précision, il vous accompagne avec professionnalisme et bienveillance.</p>
+        </div>
+    </section>
+
+    <section class="window-tech">
+        <h2 style="color: #004a99; font-size: 2.5rem; margin-bottom: 40px;">Nos Services</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>RADIOGRAPHIE</h3>
+                <p>Imagerie numérique pour un diagnostic osseux et pulmonaire précis.</p>
+            </div>
+            <div class="tech-card">
+                <h3>ÉCHOGRAPHIE</h3>
+                <p>Examens spécialisés (Doppler, 4D, Abdominal) en temps réel.</p>
+            </div>
+            <div class="tech-card">
+                <h3>SCANNER</h3>
+                <p>Exploration approfondie avec une technologie ultra-rapide.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="window-contact">
+        <h2 style="font-size: 3rem; margin: 0;">Prendre Rendez-vous</h2>
+        <p style="font-size: 1.2rem; margin: 20px 0 40px;">Contactez-nous directement sur WhatsApp pour une réponse immédiate.</p>
+        
+        <a href="https://wa.me/243898392289?text=Bonjour%20Dr%20Joseph%20Luyindadio,%20je%20souhaite%20prendre%20rendez-vous%20au%20cabinet%20Joe%20Lund's." 
+           class="whatsapp-btn">
+            RESERVER VIA WHATSAPP
+        </a>
+
+        <div style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+            <p>📍 Gombe, Kinshasa | 📞 089 839 2289</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Joe Lund's - Tous droits réservés.</p>
+        </div>
+    </section>
+
+</body>
+</html>
